@@ -13,12 +13,15 @@ export default function App() {
         <Stack.Screen
           name="UnitsSelection"
           component={UnitsSelectionScreen}
-          options={{ title: 'UNITS' }}
+          options={{ title: 'Conversion App' }}
         />
         <Stack.Screen
           name="Units"
-          component={UnitsScreen}
-          options={({ route }) => ({ title: `${route.params.category.toUpperCase()} Units` })}
+          component={UnitsScreen} 
+          options={({ route }) => ({ 
+            title: `${route.params.category}`,
+            headerBackTitle: 'Back' 
+          })}
         />
       </Stack.Navigator>
     </NavigationContainer>

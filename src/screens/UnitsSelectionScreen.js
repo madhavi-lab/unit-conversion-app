@@ -21,7 +21,7 @@ export default function CategorySelectionScreen({ navigation }) {
               source={unit.icon} // Use the icon property as the image source
               style={styles.image}
             />
-            <Text style={styles.imageText}>{unit.name.toUpperCase()}</Text>
+            <Text style={styles.imageText}>{unit.name}</Text>
           </TouchableOpacity>
         ))}
       </View>
@@ -32,7 +32,7 @@ export default function CategorySelectionScreen({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: 'top',
     alignItems: 'center',
     backgroundColor: '#fff',
   },
@@ -45,6 +45,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
     width: '80%',
+    top: 50,
   },
   imageButton: {
     alignItems: 'center',

@@ -1,6 +1,6 @@
 export const UNITS = [
   {
-    name: "length",
+    name: "Length",
     icon: require("../assets/length.png"),
     metrics: [
       { id: "cm", name: "cm", order: 1 },
@@ -8,7 +8,7 @@ export const UNITS = [
     ],
   },
   {
-    name: "weight",
+    name: "Weight",
     icon: require("../assets/weight.png"),
     metrics: [
       { id: "mg", name: "mg", order: 1 },
