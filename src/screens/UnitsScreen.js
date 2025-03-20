@@ -18,7 +18,7 @@ export default function UnitsScreen({ route }) {
 
   return (
     <View style={styles.container}>
-      
+      <Text style={styles.header}>{category} Conversion</Text> 
       <FlatList
         data={selectedUnits?.metrics || []} // Ensure metrics is not null or undefined
         keyExtractor={(item) => item.id}
@@ -42,35 +42,43 @@ export default function UnitsScreen({ route }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#f9f9f9', // Light background color
     padding: 16,
   },
-  title: {
-    fontSize: 24,
+  header: {
+    fontSize: 28,
     fontWeight: 'bold',
-    marginBottom: 20,
     textAlign: 'center',
+    marginBottom: 20,
+    color: '#333', // Darker text color for contrast
   },
   metricRow: {
     flexDirection: 'row', // Arrange items horizontally
     alignItems: 'center',
     justifyContent: 'space-between',
-    padding: 10,
-    marginVertical: 5,
-    backgroundColor: '#f0f0f0',
-    borderRadius: 5,
+    padding: 10, // Increased padding for better spacing
+    //marginVertical: 8, // Add vertical spacing between rows
+    backgroundColor: '#ffffff', // White background for rows
+    borderRadius: 10, // Rounded corners
+    shadowColor: '#000', // Add shadow for depth
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 2, // Elevation for Android shadow
   },
   metricText: {
-    fontSize: 16,
+    fontSize: 18, // Larger font size for better readability
     marginRight: 10,
     flex: 1, // Allow the text to take up available space
+    color: '#555', // Slightly muted text color
   },
   input: {
     height: 40,
-    borderColor: '#ccc',
+    borderColor: '#ddd', // Lighter border color
     borderWidth: 1,
-    borderRadius: 5,
+    borderRadius: 8, // Rounded corners for input
     paddingHorizontal: 10,
     width: '50%', // Adjust the width of the input field
+    backgroundColor: '#f7f7f7', // Light background for input
   },
 });
