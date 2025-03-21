@@ -1,7 +1,7 @@
 import { describe, expect, test } from '@jest/globals';
 import { getUnitList, createConversionFor } from '../engine/convert';
 
-describe('conversion module', () => {
+describe('conversion engine', () => {
   test('Distance: unit list is loaded correctly', () => {
     expect(getUnitList('distance')).toContain('m');
     expect(getUnitList('distance').size).toBeGreaterThan(5)
