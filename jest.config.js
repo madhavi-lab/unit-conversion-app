@@ -8,6 +8,10 @@ const config = {
   collectCoverage: true,
   coverageDirectory: "coverage",
   coverageProvider: "v8",
+  testMatch: ["**/src/**/*.test.js"], // Include test files in src/tests
+  transform: {
+    "^.+\\.jsx?$": "babel-jest"
+  }
 };
 
 module.exports = config;
