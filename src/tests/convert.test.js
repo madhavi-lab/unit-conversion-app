@@ -14,12 +14,14 @@ describe('conversion engine', () => {
 
   test('Distance: convert mile to kilometer', () => {
     const c = createConversionFor("distance", "mile");
+    console.log("Conversion from mile is : ", c);
     const val = c.get("km") === undefined ? 0 : c.get("km");
     expect(Math.round(val * 1000000) / 1000000).toEqual(1.609344);
   });
 
   test('Area: convert square meters to square yard', () => {
     const c = createConversionFor("area", "sqm");
+    console.log("Conversion from sqm is : ", c);
     const val = c.get("sqyard");
     expect(val).not.toBeUndefined();
     if (val !== undefined) {
