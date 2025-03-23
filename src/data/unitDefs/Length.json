@@ -1,0 +1,58 @@
+{
+  "mm": {
+    "convertTo": "cm",
+    "factor": 0.1
+  },
+  "m": {
+    "convertTo": "mm",
+    "factor": 1000
+  },
+  "km": {
+    "convertTo": "m",
+    "factor": 1000
+  },
+  "micro": {
+    "convertTo": "mm",
+    "factor": 0.001
+  },
+  "nano": {
+    "convertTo": "micro",
+    "factor": 0.001
+  },
+  "inch": {
+    "convertTo": "m",
+    "factor": 0.0254
+  },
+  "foot": {
+    "convertTo": "inch",
+    "factor": 12
+  },
+  "yard": {
+    "convertTo": "foot",
+    "factor": 3
+  },
+  "soccer": {
+    "convertTo": "yard",
+    "factor": 100
+  },
+  "mile": {
+    "convertTo": "yard",
+    "factor": 1760
+  },
+  "au": {
+    "convertTo": "km",
+    "factor": 149597871
+  },
+  "parsec": {
+    "convertTo": "au",
+    "factor": 206265
+  },
+  "lightyear": {
+    "convertTo": "ed",
+    "factor": 742431382
+  },
+  "ed": {
+    "convertTo": "km",
+    "factor": 12742.63
+  }
+}

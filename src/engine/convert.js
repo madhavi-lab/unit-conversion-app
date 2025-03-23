@@ -1,11 +1,20 @@
 import { Graph, shortestPath, NextWeightFnParams } from 'graph-data-structure';
-import unitDefs from '../data/unitDefs.json';
 
 const cachedDefs = new Map();
 
-function createGraph(unitType) {
+async function loadUnitDefs(unitType) {
+    try {
+        const unitDefs = await import(`../data/unitDefs/${unitType}.json`);
+        return unitDefs.default;
+    } catch (error) {
+        throw new Error(`Unit definitions for ${unitType} not found.`);
+    }
+}
+
+async function createGraph(unitType) {
+    const unitDefs = await loadUnitDefs(unitType);
     const graph = new Graph();
-    for (const [unit, def] of Object.entries(unitDefs[unitType])) {
+    for (const [unit, def] of Object.entries(unitDefs)) {
         graph.addEdge(unit, def.convertTo, def.factor);
         graph.addEdge(def.convertTo, unit, 1 / def.factor);
     }
@@ -19,13 +28,13 @@ function multiplyWeightFunction(wp) {
     return wp.edgeWeight * wp.currentPathWeight;
 }
 
-function getUnitList(unitType) {
-    const graph = createGraph(unitType);
+async function getUnitList(unitType) {
+    const graph = await createGraph(unitType);
     return graph.nodes;
 }
 
-function createConversionFor(unitType, unit) {
-    const graph = createGraph(unitType);
+async function createConversionFor(unitType, unit) {
+    const graph = await createGraph(unitType);
     const cacheName = unitType + "_" + unit;
     if (cachedDefs.has(cacheName)) {
         return cachedDefs.get(cacheName);
