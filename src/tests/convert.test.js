@@ -9,7 +9,7 @@ describe('conversion engine', () => {
   });
 
   test('Area: unit list is loaded correctly', async () => {
-    const unitList = await getUnitList('area');
+    const unitList = await getUnitList('Area');
     expect(unitList).toContain("sqyard");
     expect(unitList.size).toBeGreaterThan(3);
   });
@@ -22,7 +22,7 @@ describe('conversion engine', () => {
   });
 
   test('Area: convert square meters to square yard', async () => {
-    const c = await createConversionFor("area", "sqm");
+    const c = await createConversionFor("Area", "sqm");
     console.log("Conversion from sqm is : ", c);
     const val = c.get("sqyard");
     expect(val).not.toBeUndefined();
@@ -32,7 +32,7 @@ describe('conversion engine', () => {
   });
 
   test('Area: convert square meters to cent', async () => {
-    const c = await createConversionFor("area", "sqm");
+    const c = await createConversionFor("Area", "sqm");
     const val = c.get("cent");
     expect(val).not.toBeUndefined();
     if (val !== undefined) {
@@ -41,7 +41,7 @@ describe('conversion engine', () => {
   });
 
   test('Non existent metric: check conversion of non existent node', async () => {
-    const c = await createConversionFor("area", "sqm");
+    const c = await createConversionFor("Area", "sqm");
     const val = c.get("centos");
     expect(val).toBeUndefined();
   });
