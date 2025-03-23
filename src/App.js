@@ -1,29 +1,28 @@
-import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import UnitsSelectionScreen from './screens/UnitsSelectionScreen';
-import UnitsScreen from './screens/UnitsScreen';
-
-const Stack = createStackNavigator();
-
-export default function App() {
-  return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName="UnitsSelection">
-        <Stack.Screen
-          name="UnitsSelection"
-          component={UnitsSelectionScreen}
-          options={{ title: 'Conversion App' }}
-        />
-        <Stack.Screen
-          name="Units"
-          component={UnitsScreen} 
-          options={({ route }) => ({ 
-            title: `${route.params.category}`,
-            headerBackTitle: 'Back' 
-          })}
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
-  );
+{
+  "expo": {
+    "name": "UNITProj",
+    "slug": "UNITProj",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./src/assets/icon.png",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "splash": {
+      "image": "./src/assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./src/assets/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      }
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    }
+  }
 }
