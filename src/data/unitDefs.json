@@ -76,21 +76,17 @@
       }
     },
     "Weight": {
-        "mg": {
-            "convertTo": "g",
-            "factor": 0.001
-        },
         "g": {
-            "convertTo": "kg",
-            "factor": 0.001
+            "convertTo": "mg",
+            "factor": 1000
         },
         "kg": {
-            "convertTo": "ton",
-            "factor": 0.001
+            "convertTo": "g",
+            "factor": 1000
         },
         "ton": {
-            "convertTo": "lb",
-            "factor": 2204.62
+            "convertTo": "kg",
+            "factor": 1000
         },
         "lb": {
             "convertTo": "oz",
