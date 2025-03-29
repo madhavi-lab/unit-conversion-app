@@ -36,7 +36,7 @@ cp build ../unit-conversion-app/src/graph-data-structure
 
 eas build:configure
 
-eas build --profile preview
+eas build --profile preview --platform ios --local
 
 add the below profile to build section in eas.json
 ```json

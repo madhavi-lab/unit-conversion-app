@@ -1,4 +1,4 @@
-import unitDefs from '../data/unitDefs.json';
+import unitDefs from '../data/unitDefs.js';
 
 export class UnitConverter {
     constructor() {
