@@ -18,13 +18,13 @@ const unitDefs = {
     }
   },
   "Length": {
-    "mm": {
-      "convertTo": "cm",
-      "factor": 0.1
+    "cm": {
+      "convertTo": "mm",
+      "factor": 10
     },
     "m": {
-      "convertTo": "mm",
-      "factor": 1000
+      "convertTo": "cm",
+      "factor": 100
     },
     "km": {
       "convertTo": "m",

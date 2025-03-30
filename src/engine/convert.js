@@ -18,9 +18,7 @@ export class UnitConverter {
         if (this.visited.has(currentMetric)) return;
         this.visited.add(currentMetric);
 
-        // console.log(`Visiting metric: ${currentMetric}, current factor: ${currentFactor}`);
         this.conversionFactors.set(currentMetric, currentFactor);
-        // console.log("Conversion factors so far: ", this.conversionFactors);
 
         const metricDef = metrics[currentMetric];
         if (metricDef) {
@@ -53,8 +51,17 @@ export class UnitConverter {
             return this.cachedMetrics.get(key);
         }
         const metrics = unitDefs[metricType];
-        if (!metrics || !metrics[metric]) {
-            throw new Error(`Invalid metric type or metric: ${metricType}, ${metric} `);
+        if (!metrics) {
+            throw new Error(`Invalid metric type : ${metricType}`);
+        }
+        // Add reverse relationships for metrics not explicitly listed in "convertTo"
+        for (const [key, value] of Object.entries(metrics)) {
+            if (value.convertTo && !metrics[value.convertTo]) {
+                metrics[value.convertTo] = { convertTo: key, factor: 1 / value.factor };
+            }
+        }
+        if (!metrics[metric]) {
+            throw new Error(`Invalid metric in metric type: ${metric}:${metricType} `);
         }
         console.log(`Running conversion for : '${metricType}', '${metric}' `);
 
@@ -64,7 +71,6 @@ export class UnitConverter {
         this.#findFactor(metrics, metric, 1);
         this.cachedMetrics.set(key, this.conversionFactors);
         this.conversionFactors.delete(metric); // Remove the original metric from the conversion factors
-        // console.log("Conversion factors for '", metricType, "', '", metric, "' are: ", this.conversionFactors);
         return this.conversionFactors;
     }
 }
