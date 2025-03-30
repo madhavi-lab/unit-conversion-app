@@ -25,6 +25,20 @@ describe('UnitConverter.getConversionFactorToOthers', () => {
         expect(result.get("mile")).toBe(0.00062);
     });
 
+    test('should return correct conversion factors for valid metric as leaf', () => {
+        const result = converter.getConversionFactorToOthers('Length', 'mm'); // Use instance method
+        console.log("conversion to mm is : ", result);
+        for (const [key, val] of result.entries()) {
+            const rval = Math.round(result.get(key) * 100000) / 100000
+            result.set(key, rval);
+        }
+        expect(result.get("cm")).toBe(0.1);
+        expect(result.get("m")).toBe(0.001);
+        expect(result.get("inch")).toBe(0.03937);
+        expect(result.get("foot")).toBe(0.00328);
+    });
+
+
     test('should return correct conversion factors for another valid metric', () => {
         const result = converter.getConversionFactorToOthers('Weight', 'kg'); // Use instance method
         console.log("conversion to kg is : ", result);
