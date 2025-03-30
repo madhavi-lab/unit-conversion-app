@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, FlatList, StyleSheet } from 'react-native';
 import { UNITS } from '../data/units';
 import ConversionInput from '../components/ConversionInput';
-import { createConversionFor } from '../engine/convert'; // Import conversion engine
+import { converter } from '../engine/convert'; // Import UnitConverter instance
 
 export default function ConversionScreen({ route }) {
   const { category } = route.params;
@@ -12,20 +12,22 @@ export default function ConversionScreen({ route }) {
 
   // Function to handle input changes and update all metrics
   const handleInputChange = (id, value) => {
-    const numericValue = parseFloat(value) || 0; // Parse input value
-    const conversions = createConversionFor(category, id); // Get conversion factors
-
-    const updatedValues = {};
-    updatedValues[id] = value; // Set the entered value for the selected metric
-
-    // Convert the entered value to other metrics
-    for (const [targetId, factor] of conversions.entries()) {
-      updatedValues[targetId] = (numericValue * factor).toPrecision(6) //.toFixed(4); // Convert and format
+    const numericValue = parseFloat(value) || 0;
+  
+    try {
+      const conversions = converter.getConversionFactorToOthers(category.trim(), id.trim());
+  
+      const updatedValues = {};
+      updatedValues[id] = value;
+  
+      for (const [targetId, factor] of conversions.entries()) {
+        updatedValues[targetId] = (numericValue * factor).toPrecision(6);
+      }
+  
+      setUnitValues(updatedValues);
+    } catch (error) {
+      console.error('Error fetching conversion factors:', error.message);
     }
-
-    // console.log("Updated values are : ", updatedValues);
-
-    setUnitValues(updatedValues); // Update state with converted values
   };
 
   return (
