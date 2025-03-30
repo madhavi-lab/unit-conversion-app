@@ -13,17 +13,18 @@ export default function ConversionScreen({ route }) {
   // Function to handle input changes and update all metrics
   const handleInputChange = (id, value) => {
     const numericValue = parseFloat(value) || 0;
-  
+
     try {
       const conversions = converter.getConversionFactorToOthers(category.trim(), id.trim());
-  
+
       const updatedValues = {};
       updatedValues[id] = value;
-  
+
       for (const [targetId, factor] of conversions.entries()) {
-        updatedValues[targetId] = (numericValue * factor).toPrecision(6);
+        const convertedValue = numericValue * factor;
+        updatedValues[targetId] = convertedValue.toPrecision(6); // Use scientific notation for small values
       }
-  
+
       setUnitValues(updatedValues);
     } catch (error) {
       console.error('Error fetching conversion factors:', error.message);
