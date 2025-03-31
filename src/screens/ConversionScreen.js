@@ -22,7 +22,9 @@ export default function ConversionScreen({ route }) {
 
       for (const [targetId, factor] of conversions.entries()) {
         const convertedValue = numericValue * factor;
-        updatedValues[targetId] = convertedValue.toPrecision(6); // Use scientific notation for small values
+        let updatedValue = convertedValue.toPrecision(6); // Use scientific notation for small values
+        updatedValue = parseFloat(updatedValue).toString(); // Remove trailing zeros
+        updatedValues[targetId] = updatedValue;
       }
 
       setUnitValues(updatedValues);
