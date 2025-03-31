@@ -41,13 +41,13 @@ describe('UnitConverter.getConversionFactorToOthers', () => {
 
     test('should throw an error for invalid metric type', () => {
         expect(() => converter.getConversionFactorToOthers('InvalidType', 'm')).toThrow(
-            'Invalid metric type or metric: InvalidType, m'
+            'Invalid metric type: InvalidType'
         );
     });
 
     test('should throw an error for invalid metric', () => {
         expect(() => converter.getConversionFactorToOthers('Length', 'invalidMetric')).toThrow(
-            'Invalid metric type or metric: Length, invalidMetric'
+            'Invalid metric: invalidMetric in metric type: Length'
         );
     });
 

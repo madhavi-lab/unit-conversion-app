@@ -53,9 +53,24 @@ export class UnitConverter {
             return this.cachedMetrics.get(key);
         }
         const metrics = unitDefs[metricType];
-        if (!metrics || !metrics[metric]) {
-            throw new Error(`Invalid metric type or metric: ${metricType}, ${metric} `);
+        if (!metrics) {
+            throw new Error(`Invalid metric type: ${metricType}`);
         }
+
+        // Dynamically add missing metrics by iterating through `convertTo`
+        for (const [key, value] of Object.entries(metrics)) {
+            if (value.convertTo && !metrics[value.convertTo]) {
+                metrics[value.convertTo] = {
+                    convertTo: key,
+                    factor: 1 / value.factor
+                };
+            }
+        }
+
+        if (!metrics[metric]) {
+            throw new Error(`Invalid metric: ${metric} in metric type: ${metricType}`);
+        }
+
         console.log(`Running conversion for : '${metricType}', '${metric}' `);
 
         this.conversionFactors = new Map();
