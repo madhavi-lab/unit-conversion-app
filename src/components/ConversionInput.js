@@ -1,7 +1,18 @@
-import React from 'react';
-import { View, Text, TextInput, StyleSheet } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
+// import Clipboard from '@react-native-clipboard/clipboard';
+import {Clipboard} from 'react-native';
+import { Ionicons } from '@expo/vector-icons'; // Import icon library
 
 export default function ConversionInput({ name, value, onChangeText }) {
+  const [copied, setCopied] = useState(false); // State to track copy status
+
+  const handleCopy = () => {
+    Clipboard.setString(value); // Copy value to clipboard
+    setCopied(true); // Set copied state to true
+    setTimeout(() => setCopied(false), 500); // Reset icon after 0.5 seconds
+  };
+
   return (
     <View style={styles.metricRow}>
       <Text style={styles.metricText}>{name}</Text>
@@ -12,6 +23,13 @@ export default function ConversionInput({ name, value, onChangeText }) {
         value={value}
         onChangeText={onChangeText}
       />
+      <TouchableOpacity onPress={handleCopy} style={styles.copyIcon}>
+        <Ionicons
+          name={copied ? "checkmark-outline" : "copy-outline"} // Change icon based on state
+          size={20}
+          color={copied ? "green" : "#555"} // Change color for success
+        />
+      </TouchableOpacity>
     </View>
   );
 }
@@ -44,5 +62,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     width: '50%', // Adjust the width of the input field
     backgroundColor: '#f7f7f7', // Light background for input
+  },
+  copyIcon: {
+    marginLeft: 10,
   },
 });
